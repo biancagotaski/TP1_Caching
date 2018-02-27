@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FirstApplication.Models.PessoaViewModel>
+<br />
+<br />
+<div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nascimento)
+        </th>
+        <th></th>
+    </tr>
+
+    @using (Html.BeginForm())
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nascimento)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.IsChecked)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                @Html.ActionLink("Select", "Select" )
+            </td>
+        </tr>
+    }
+
+</table>
