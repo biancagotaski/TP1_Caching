@@ -24,7 +24,7 @@
         <th></th>
     </tr>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Select", "Pessoa"))
     {
         foreach (var item in Model)
         {
@@ -48,7 +48,7 @@
         }
         <tr>
             <td>
-                @Html.ActionLink("Select", "Select" )
+                <input type="submit" value="Salvar Amigos Marcados" />
             </td>
         </tr>
     }

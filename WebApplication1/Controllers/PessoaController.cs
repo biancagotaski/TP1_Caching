@@ -58,9 +58,23 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Select(IEnumerable<PessoaViewModel> pessoas)
         {
+            var repository = new ListaRepository();
             Session["friendsList"] = pessoas;
 
-            return View("ListaSelecao");
+            if (Session["friendsList"] != null)
+                pessoas = (IEnumerable<PessoaViewModel>)Session["friendsList"];
+            else
+                pessoas = repository.GetAllPessoas().Select(p => new PessoaViewModel()
+                {
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    Sobrenome = p.Sobrenome,
+                    Nascimento = p.Nascimento,
+                    Email = p.Email,
+                    IsChecked = false
+                });
+
+            return View(pessoas);
         }
 
         //------------------------------------------------------------------------------------//
